@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.parent{
+    width: 90%;
+    margin: 10px auto;
+}
+
+.parent div {
+    border: 1px solid black;
+    float: left;
+    width:30%;
+    box-sizing: border-box;
+    text-align: center;
+    margin : 10px;
+}
+
+.test{
+	color :red;
+	}
