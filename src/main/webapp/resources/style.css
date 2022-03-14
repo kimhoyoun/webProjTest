@@ -1,19 +1,33 @@
 @charset "UTF-8";
 
 .parent{
-    width: 90%;
+    width: 70%;
+    height: 1800px;
     margin: 10px auto;
+    border: 1px solid black;
+   position : static;
 }
-
-.parent div {
+.div1{
+	margin: 10px auto;
+	border: 1px solid black;
+	height:23%;
+}
+.div1 div {
     border: 1px solid black;
     float: left;
-    width:30%;
+    width: 30%;
+    min-width : 300px;
+	min-height : 400px;
+	max-width : 390px;
+	max-height : 520px;
     box-sizing: border-box;
     text-align: center;
     margin : 10px;
 }
 
+.div1 div img{
+	width : 60%;
+}
 .test{
 	color :red;
 	}

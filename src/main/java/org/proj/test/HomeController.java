@@ -14,9 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class HomeController {
 	
@@ -42,19 +39,19 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/test.action", method = RequestMethod.GET)
+	@RequestMapping(value = "/showList", method = RequestMethod.GET)
 	public String testGo(Model model) {
 		JSONArray jArr = api.getJArr();
 		model.addAttribute("jArr", jArr);
 		
-		return "test";
+		return "showList";
 	}
 	
-	@RequestMapping(value = "/detail.action", method = RequestMethod.GET)
+	@RequestMapping(value = "/showDetail", method = RequestMethod.GET)
 	public String detail(Model model, String id) {
 		JSONObject detailinfo = api.detailInfo(id);
 		model.addAttribute("info", detailinfo);
 		
-		return "detail";
+		return "showDetail";
 	}
 }

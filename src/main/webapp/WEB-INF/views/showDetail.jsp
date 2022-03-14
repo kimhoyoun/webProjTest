@@ -16,7 +16,7 @@
 	<div style="text-align: center;">
 		<table border="1" width="1000" style="margin: auto">
 			<tr>
-				<td rowspan="9"><img src="<%=info.get("poster")%>" /></td>
+				<td rowspan="9" width = "400"><img src="<%=info.get("poster")%>" width="400"/></td>
 				<th>제목</th>
 				<td><%=info.get("prfnm")%></td>
 			</tr>
@@ -56,20 +56,22 @@
 		</table>
 		<br />
 		<%
-		JSONObject arr1 = info.getJSONObject("styurls");
+		if(!info.isNull("styurls")){
+			JSONObject arr1 = info.getJSONObject("styurls");
 		if (arr1.get("styurl") instanceof JSONArray) {
 			JSONArray arr2 = arr1.getJSONArray("styurl");
 			for (int i = 0; i < arr2.length(); i++) {
 		%>
-		<img src="<%=arr2.get(i)%>" />
+		<img src="<%=arr2.get(i)%>" width="1000"/>
 		<br />
 		<%
 			}
 
 		} else {
 		%>
-		<img src="<%=arr1.get("styurl")%>" />
+		<img src="<%=arr1.get("styurl")%>" width="1000"/>
 		<%
+		}
 		}
 		%>
 
