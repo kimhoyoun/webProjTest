@@ -31,6 +31,55 @@ public class TestAPI {
 					+ URLEncoder.encode("1", "UTF-8")); // 현재페이지 (stdate) ex) 1
 			
 			urlBuilder.append("&" + URLEncoder.encode("rows", "UTF-8") + "="
+					+ URLEncoder.encode("300", "UTF-8")); // 페이지당 목록수 (stdate) ex) 10
+			
+			urlBuilder.append("&" + URLEncoder.encode("prfstate", "UTF-8") + "="
+					+ URLEncoder.encode("02", "UTF-8")); // 공연상태코드 (stdate) ex) 02
+
+			URL url = new URL(urlBuilder.toString());
+			conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Content-type", "application/json");
+
+			BufferedReader rd;
+			if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+
+				rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+			} else {
+
+				rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+
+			}
+
+			sb = new StringBuilder();
+			String line;
+			while ((line = rd.readLine()) != null) {
+
+				sb.append(line);
+
+			}
+			rd.close();
+			conn.disconnect();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		String xmlStr = sb.toString();
+		jArr = XML.toJSONObject(xmlStr).getJSONObject("dbs").getJSONArray("db");
+	}
+	
+	public void pageInit(int cpage) {
+		StringBuilder urlBuilder = new StringBuilder(
+				"http://www.kopis.or.kr/openApi/restful/pblprfr"); /* URL */
+		HttpURLConnection conn;
+		
+		try {
+			urlBuilder.append("?" + URLEncoder.encode("service", "UTF-8") + "=a3ccd6de629b409abe4d1edfec48dd96"); /* 서비스키 */
+			urlBuilder.append("&" + URLEncoder.encode("cpage", "UTF-8") + "="
+					+ URLEncoder.encode(cpage+"", "UTF-8")); // 현재페이지 (stdate) ex) 1
+			
+			urlBuilder.append("&" + URLEncoder.encode("rows", "UTF-8") + "="
 					+ URLEncoder.encode("90", "UTF-8")); // 페이지당 목록수 (stdate) ex) 10
 			
 			urlBuilder.append("&" + URLEncoder.encode("prfstate", "UTF-8") + "="

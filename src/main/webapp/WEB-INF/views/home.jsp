@@ -20,6 +20,6 @@
 
 	<P>The time on the server is ${serverTime}.</P>
 
-	<a href="showList">test</a>
+	<a href="showList?pageNum=1">test</a>
 </body>
 </html>
